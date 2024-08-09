@@ -1,0 +1,48 @@
+name: Automatic commit
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 4 * * *'
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        current_date=$(date "+%Y-%m-%d")
+        echo -e "\nCurrent date: $current_date" # Show current date
+        echo -e "\nChecking contents of 'automated-commit-log':" # Checking content of the automated-commit-log
+        cat automated-commit-log # Show contents of automated-commit-log
+        if ! grep -q "$current_date" automated-commit-log; then
+          echo "$current_date" >> automated-commit-log
+          echo -e "\nCurrent date added to 'automated-commit-log'." # Current date added to automated-commit-log
+          git config user.name "Marc Delgado Ferreres"
+          git config user.email "marc.delgado.ferreres.mail@proton.me"
+          git add automated-commit-log
+          echo -e "\nGit status:" # Checking git status
+          git status # Showing the content of git status
+          echo "Checking for changes in git:" # Checking for changes in git
+          git diff --cached # Show changes in git
+          if ! git diff --cached --quiet; then
+            git commit -m "Create automated commit $current_date [marc-delgado-ferreres/automated-commit-log]"
+            echo -e "\nSuccessful commit." # Successful commit
+            echo -e "\nPushing changes to main:" # Pushing changes to main
+            if ! git push origin main; then
+              echo -e "\nNo changes have been made." >&2 # No changes have been made
+              exit 1
+            else 
+              echo -e "\nChanges made correctly." >&2 # Changes made correctly
+            fi
+          else 
+              echo -e "\nNo changes have been made." >&2 # No changes have been made
+              exit 1
+          fi
+        else
+          echo -e "\nNo changes have been made." >&2 # No changes have been made
+          exit 1
+        fi
+      shell: bash
