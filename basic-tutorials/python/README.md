@@ -20,11 +20,11 @@ Dentro de cada una de estas carpetas se encuentran los diferentes tutoriales bá
 - [Bucle While](./07-while-loop): Repetición de tareas con bucles while.
 - [Errores](./08-errors): Identificación y manejo de errores comunes.
 - [Excepciones](./09-exceptions): Captura y manejo de excepciones.
-- [Listas](./10-listss): Manipulación de listas de datos.
+- [Listas](./10-lists): Manipulación de listas de datos.
 - [Tuplas](./11-tuples): Uso de tuplas para almacenar datos inmutables.
 - [Diccionarios](./12-dictionaries): Almacenamiento y gestión de datos con claves y valores.
 - [Funciones](./13-functions): Creación y uso de funciones para modularizar el código.
-- [Bibliotecas](./14-libreries): Uso de bibliotecas estándar para ampliar funcionalidades. *
+- [Bibliotecas](./14-libraries): Uso de bibliotecas estándar para ampliar funcionalidades. *
 
 Esta lista está organizada de la mejor manera para aprender a programar en lenguaje **Python**.
 
