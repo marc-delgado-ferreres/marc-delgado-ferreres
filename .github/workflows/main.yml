@@ -23,6 +23,11 @@ jobs:
           git config user.name "marc-delgado-ferreres" # Set the name for the commit.
           git config user.email "marc.delgado.ferreres.mail@proton.me" # Set the email for the commit.
           git add automated-commit-log
+          if [ "$(date '+%m-%d')" == "05-17" ]; then
+            age=$(($(date '+%Y') - 2004))
+            sed -i -E "s/Soy un chico de [0-9]+ años, nacido el 17 de mayo de 2004/Soy un chico de $age años, nacido el 17 de mayo de 2004/g" README.md
+            git add README.md
+          fi
           echo -e "\nGit status:"
           git status # Showing the content of git status
           echo "Checking for changes in git:"
